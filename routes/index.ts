@@ -1,10 +1,10 @@
 import {NextFunction, Request, Response} from "express";
-import { getHomeDir } from "../utils/path";
+import { getGameDir } from "../utils/path";
 const express = require('express');
 const router = express.Router();
 
 router.get('/', (req: Request, res: Response, next: NextFunction) => {
-  console.log(getHomeDir())
+  console.log(getGameDir())
   res.send('respond with a resource');
 });
 
