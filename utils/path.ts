@@ -5,15 +5,18 @@ export const getHomeDir = ():string => {
   return homedir();
 };
 
-export const getGameDir = ():string => {
-  return getHomeDir() + "/Library/Application Support/minecraft/versions/1.12.2-forge1.12.2-14.23.5.2768/saves/New World";
+export const minecraftDir = (): string => {
+  return getHomeDir() + "/Library/Application Support/minecraft";
 };
 
-export const getComputerDir = ():string => {
-  return getGameDir() + "/computer";
+export const getGameDir = (gameDir: string):string => {
+  return minecraftDir() + "/versions/" + gameDir;
 };
 
-export const getComputerDirectories = async ():Promise<any[]> => {
-  const dirs = await readdir(getComputerDir());
-  return dirs;
+export const getWorldDir = (gameDir: string, worldDir: string): string => {
+  return getGameDir(gameDir) + "/saves/" + worldDir;
+};
+
+export const getComputerDir = (gameDir: string, worldDir: string, computerId: string):string => {
+  return getWorldDir(gameDir, worldDir) + "/computer/" + computerId;
 };
